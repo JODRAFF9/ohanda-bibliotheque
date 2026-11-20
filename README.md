@@ -25,14 +25,21 @@ Utilisation :
 
 La clé peut aussi être préremplie avec la variable d'environnement `OANDA_FX_API_KEY`.
 
-### Créer un exécutable Windows (optionnel)
+### Exécutable Windows (.exe)
+
+Sans installer Python : sur GitHub, onglet « Actions », workflow « Compiler l'exécutable Windows », dernière
+exécution réussie, section « Artifacts », télécharger `TauxOANDA-windows` (archive ZIP contenant `TauxOANDA.exe`).
+Le workflow se relance seul à chaque modification de `app/` sur `main`, ou à la main (« Run workflow »).
+
+Pour le compiler vous-même (Python 3.12 conseillé) :
 
 ```bash
-pip install pyinstaller
-pyinstaller --noconsole --onefile --name TauxOANDA app/main.py
+python -m pip install -r requirements.txt pyinstaller
+pyinstaller --noconsole --onefile --name TauxOANDA --hidden-import matplotlib.backends.backend_tkagg app/main.py
 ```
 
-Le fichier `dist/TauxOANDA.exe` se lance sans installer Python.
+Le fichier `dist\TauxOANDA.exe` se lance sans installer Python. Windows peut afficher un avertissement
+SmartScreen pour un exécutable non signé : « Informations complémentaires », puis « Exécuter quand même ».
 
 ## Notebook
 
